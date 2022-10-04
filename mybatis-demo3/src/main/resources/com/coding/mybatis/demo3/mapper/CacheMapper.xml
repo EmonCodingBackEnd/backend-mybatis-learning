@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.coding.mybatis.demo3.mapper.CacheMapper">
+    <cache type="org.mybatis.caches.ehcache.EhcacheCache"/>
+
+    <select id="getEmpByEid" resultType="com.coding.mybatis.demo3.pojo.Emp">
+        select *
+        from t_emp
+        where eid = #{eid}
+    </select>
+
+    <insert id="insertEmp">
+        insert into t_emp
+        values (null, #{empName}, #{age}, #{sex}, #{email}, null)
+    </insert>
+
+    <update id="updateEmp">
+        update t_emp
+        set emp_name=#{empName},
+            age=#{age},
+            sex=#{sex},
+            email=#{email}
+        where eid = #{eid}
+    </update>
+</mapper>

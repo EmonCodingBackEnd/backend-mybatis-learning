@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.coding.mybatis.demo3.mapper.DeptMapper">
+    <select id="getEmpAndDeptByStepTwo" resultType="com.coding.mybatis.demo3.pojo.Dept">
+        select *
+        from t_dept
+        where did = #{did}
+    </select>
+
+
+    <resultMap id="deptAndEmpResultMap" type="Dept">
+        <id property="did" column="did"/>
+        <result property="deptName" column="dept_name"/>
+        <!--collection：处理一对多的映射关系
+        ofType：表示该属性所对应的集合中存储数据的类型-->
+        <collection property="emps" ofType="Emp">
+            <id property="eid" column="eid"/>
+            <result property="empName" column="emp_name"/>
+            <result property="age" column="age"/>
+            <result property="sex" column="sex"/>
+            <result property="email" column="email"/>
+        </collection>
+    </resultMap>
+    <select id="getDeptAndEmp" resultMap="deptAndEmpResultMap">
+        select *
+        from t_dept
+                 left join t_emp te on t_dept.did = te.did
+        where t_dept.did = #{did}
+    </select>
+
+    <resultMap id="deptAndEmpResultMapByStep" type="Dept">
+        <id property="did" column="did"/>
+        <result property="deptName" column="dept_name"/>
+        <!--select：设置分步查询的sql的唯一标识
+        column：设置分步查询的条件
+        fetchType：当开启了全局的延迟加载后，使用此属性手动控制延迟加载的效果
+        fetchType="lazy|eager"：lazy表示延迟加载，eager表示立即加载-->
+        <collection property="emps" select="com.coding.mybatis.demo3.mapper.EmpMapper.getDeptAndEmpByStepTwo"
+                    column="did" fetchType="lazy"/>
+    </resultMap>
+    <select id="getDeptAndEmpByStepOne" resultMap="deptAndEmpResultMapByStep">
+        select *
+        from t_dept
+        where did = #{did}
+    </select>
+</mapper>

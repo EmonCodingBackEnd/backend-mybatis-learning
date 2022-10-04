@@ -1,0 +1,23 @@
+spring:
+  # \u914D\u7F6E\u6570\u636E\u6E90\u4FE1\u606F
+  datasource:
+    dynamic:
+      # \u8BBE\u7F6E\u9ED8\u8BA4\u7684\u6570\u636E\u6E90\u6216\u8005\u6570\u636E\u6E90\u7EC4\uFF0C\u9ED8\u8BA4\u503C\u5373\u4E3Amaster
+      primary: master
+      # \u4E25\u683C\u5339\u914D\u6570\u636E\u6E90\uFF0C\u9ED8\u8BA4false\u3002true-\u672A\u5339\u914D\u5230\u6307\u5B9A\u6570\u636E\u6E90\u65F6\u629B\u5F02\u5E38\uFF0Cfalse\u4F7F\u7528\u9ED8\u8BA4\u6570\u636E\u6E90
+      strict: false
+      datasource:
+        master:
+          url: jdbc:mysql://repo.emon.vip:3306/mybatisdb?characterEncoding=utf-8&useSSL=false
+          driver-class-name: com.mysql.cj.jdbc.Driver
+          username: root
+          password: root123
+        slave_1:
+          url: jdbc:mysql://repo.emon.vip:3306/mybatisdb1?characterEncoding=utf-8&useSSL=false
+          driver-class-name: com.mysql.cj.jdbc.Driver
+          username: root
+          password: root123
+
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl

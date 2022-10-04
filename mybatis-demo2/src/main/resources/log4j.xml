@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration PUBLIC "-//APACHE//DTD LOG4J 1.2//EN" "log4j.dtd">
+
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+    <appender name="STDOUT" class="org.apache.log4j.ConsoleAppender">
+        <param name="Encoding" value="UTF-8"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d %-5p [%t] %C{36} (%F:%L) - %m%n"/>
+        </layout>
+    </appender>
+    <logger name="java.sql">
+        <level value="debug"/>
+    </logger>
+    <logger name="org.apache.ibatis">
+        <level value="info"/>
+    </logger>
+    <!--XXXMapper的日志的 logger 使用的是 com.coding.mybatis 而不是日志上显示的 org.apache.ibatis.logging.jdbc.BaseJdbcLogger-->
+    <logger name="com.coding.mybatis">
+        <level value="debug"/>
+    </logger>
+    <root>
+        <priority value="debug"/>
+        <appender-ref ref="STDOUT"/>
+    </root>
+</log4j:configuration>

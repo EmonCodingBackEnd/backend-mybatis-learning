@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.coding.mybatis.demo2.mapper.ParameterMapper">
+
+
+    <select id="getAllUser" resultType="com.coding.mybatis.demo2.pojo.User">
+        select *
+        from t_user
+    </select>
+
+    <!--
+    这里的#{username}名字不重要，也可以是#{username2}，因为是单字面量，以位置匹配
+    当然，也可以是 '${username}' 或者 '${username2}'
+    -->
+    <select id="getUserByUsername" resultType="com.coding.mybatis.demo2.pojo.User">
+        select *
+        from t_user
+        where username = #{username}
+    </select>
+
+    <select id="checkLogin" resultType="com.coding.mybatis.demo2.pojo.User">
+        select *
+        from t_user
+        where username = #{arg0}
+          and password = #{param2}
+    </select>
+
+    <select id="checkLoginByMap" resultType="com.coding.mybatis.demo2.pojo.User">
+        select *
+        from t_user
+        where username = #{username}
+          and password = #{password}
+    </select>
+
+    <insert id="insertUser">
+        insert into t_user(username, password, age, sex, email)
+        values (#{username}, #{password}, #{age}, #{sex}, #{email})
+    </insert>
+
+    <select id="checkLoginByParam" resultType="com.coding.mybatis.demo2.pojo.User">
+        select *
+        from t_user
+        where username = #{username}
+          and password = #{password}
+    </select>
+</mapper>

@@ -2,6 +2,7 @@ package com.coding.mybatis.sbsmp.mapper;
 
 import java.util.Map;
 
+import org.apache.ibatis.annotations.MapKey;
 import org.apache.ibatis.annotations.Param;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
@@ -13,6 +14,7 @@ public interface UserMapper extends BaseMapper<User> {
     /**
      * 根据id查询用户信息为map集合
      */
+    @MapKey("id")
     Map<String, Object> selectMapById(Long id);
 
     /**

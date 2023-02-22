@@ -31,6 +31,13 @@
     <dependencyManagement>
         <dependencies>
             <!-- 定义三方包 beg -->
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>1.18.24</version>
+            </dependency>
+
+
             <!--Spring beg-->
             <!--基于Maven依赖传递性，导入spring-context依赖即可导入当前所需的所有jar包-->
             <dependency>
@@ -105,12 +112,6 @@
             <!--MyBatis end-->
 
 
-            <dependency>
-                <groupId>org.projectlombok</groupId>
-                <artifactId>lombok</artifactId>
-                <version>1.18.24</version>
-            </dependency>
-
             <!--MySQL驱动-->
             <dependency>
                 <groupId>mysql</groupId>
@@ -139,6 +140,7 @@
                 <artifactId>thymeleaf-spring5</artifactId>
                 <version>3.0.15.RELEASE</version>
             </dependency>
+
 
             <!--log4j日志-->
             <dependency>
